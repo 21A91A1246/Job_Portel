@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: white;
+  color: #4497f0;
+  padding-top: 60px;
+}
+
+/* Headings */
+h3, h4 {
+  margin: 1rem 0 0.5rem 0;
+  color: #1976d2;
+}
+
+/* Form */
+form {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(25, 118, 210, 0.1);
+  border: 1px solid #bbdefb;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #0d47a1;
+}
+
+/* Inputs, Dropdowns, Textareas */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #90caf9;
+  border-radius: 4px;
+  transition: border 0.3s;
+  background: #e3f2fd;
+  color: #1a237e;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2196f3;
+  outline: none;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+/* Submit Button */
+button.submitBtn {
+  background-color: #1976d2;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(25, 118, 210, 0.08);
+  margin-left: 30px;
+  transition: background-color 0.3s ease;
+}
+
+button.submitBtn:hover {
+  background-color: #0d47a1;
+}
+
+/* Benefits section */
+.benefits-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-pill {
+  background: #bbdefb;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 2px 5px rgba(25, 118, 210, 0.2);
+  color: #0d47a1;
+  font-weight: 500;
+}
+
+.benefit-pill:hover {
+  background: #1976d2;
+  color: #fff;
+}
+
+.benefit-pill.selected {
+  background: #0d47a1;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+}
+
+/* Divider */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #bbdefb;
+  width: 95%;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #1976d2;
+}
+
+/* Salary inputs */
+.salary-inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+input[type="number"] {
+  width: 200px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  input,
+  select,
+  textarea {
+    padding: 0.5rem;
+  }
+
+  button.submitBtn {
+    width: 100%;
+    padding: 0.75rem;
+    margin-left: 0;
+  }
+
+  .salary-inputs {
+    flex-direction: column;
+  }
+
+  .salary-inputs input[type="number"] {
+    width: 100%;
+  }
+
+  .benefits-list {
+    flex-direction: row;
+  }
+
+  .benefits-list button {
+    width: 45%;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-pill {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btnDivMobile {
+    display: flex;
+    justify-content: center;
+  }
+
+  hr {
+    width: 90%;
+  }
+}

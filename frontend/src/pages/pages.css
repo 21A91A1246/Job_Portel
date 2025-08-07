@@ -1,0 +1,387 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+  width: 100%;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.tab-buttons button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: none;
+  background-color: #ddd;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.tab-buttons button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* applied jobs */
+.job-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: white; /* default */
+}
+
+.job-card.applied {
+  background-color: #d4edda; /* light green */
+  cursor: default;
+}
+
+.job-card:hover:not(.applied) {
+  background-color: #f0f8ff;
+}
+
+.status {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.status-applied {
+  color: green;
+}
+
+.status-apply {
+  color: #007bff;
+}
+
+
+/* search Div */
+.searchDiv{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  margin-block: 2rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.searchDiv input{
+  width: 30%;
+  height: 2rem;
+  border: none;
+  border-radius: 10px;
+}
+.searchDiv button{
+  border-radius: 10px;
+  width: 10%;
+  height: 2rem;
+  border: none;
+  color: white;
+  background-color: #007bff;
+  cursor: pointer;
+}
+
+/* jobs containers csss */
+/* Container holds both left and right */
+.bottomDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  height: calc(100vh - 150px); /* adjust based on header/footer */
+  margin-bottom: 60px;
+  margin-inline: 50px;
+}
+
+/* Left side scrolls */
+.leftDiv {
+  width: 40%;
+  overflow-y: auto;
+  height: 100%;
+  border: 1px solid ;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Right side stays fixed */
+.rightDiv {
+  flex: 1;
+  height: 100%;
+  position: sticky;
+  top: 100px; /* adjust based on your header height */
+  align-self: flex-start;
+  padding: 20px;
+  background: #f9f9f9;
+  overflow-y: auto;
+  border: 1px solid ;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* post job css */
+.postjob{
+  margin: 0;
+  padding: 0;
+}
+hr{
+  width: 10%;
+  margin-top: 20px;
+  border: 2px solid rgb(235, 198, 131);
+}
+.postjob center {
+  margin-top: 20px;
+  font-size: 67px;
+  font-weight: 50;
+}
+.postjob img{
+  width: 100%;
+}
+.postjob button{
+  width: 140px;
+  height: 60px;
+  background-color: orange;
+  color: whitesmoke;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 10%;
+  margin-top: 30px;
+  font-size: 20px;
+}
+.postjob .fourdivs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+  margin-inline: 100px;
+}
+.postjob .fourdivs b{
+  font-size: 33px;
+  font-weight: 100;
+}
+.postjob .fourdivs > p{
+  font-size: 15px;
+  opacity: 60;
+  line-height: 2;
+}
+
+.dbfeatures{
+    margin-inline: 100px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.dbfeatures .dfleft{
+  width: 50%;
+  cursor: pointer;
+}
+.dfleft hr{
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1.5px solid rgb(205, 201, 201);
+}
+
+.divthree{
+display: flex;
+flex-direction: row; 
+margin-inline: 10%;
+gap: 10px;
+margin-bottom: 20px;
+}
+.divthreeleft{
+  width: 50%;
+}
+.divthreeleft img{
+  width: 100%;
+}
+.divthreeright{
+  width: 50%;
+  margin-left: 40px;  
+}
+.divthreeright h4{
+  margin-top: 0;
+  margin-bottom: 0;
+ font-size: 45px;
+ font-weight: 100;
+}
+.divthreeright p{
+  font-size: 25px;
+  margin-top: 10px;
+  line-height: 1.5;
+  opacity: 60%;
+}
+
+/* footer start */
+.footer {
+  width: 100%;
+  background: #42403d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-top: auto;
+  z-index: 999;
+}
+
+.ftrlogos{
+  display: flex;
+  color: whitesmoke;
+  gap: 20px;
+  padding-top: 10px;
+}
+.ftrlogos a {
+  color: white;
+  text-decoration: none;
+  /* transition: color 0.3s ease; */
+}
+
+/* src/pages/HomePage.css */
+
+/* login and register css start*/
+
+.auth-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+  /* background: #fff; */
+  box-shadow: 3px 4px 0px 1px #E99F4C;
+  background-color: #EDDCD9;
+
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form input {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  font-size: 1rem;
+  box-shadow: 3px 4px 0px 1px #E99F4C;
+}
+.auth-form select {
+  padding: 0.50rem;
+  font-size: 1rem;
+  box-shadow: 3px 4px 0px 1px #E99F4C;
+}
+
+.auth-form button {
+  
+  width: 170px;
+  height: 60px;
+  font-size: 17px;
+  text-decoration: none;
+  margin: 50px 50px 0px 50px;
+  transition: 0.5s;
+  position: relative;
+  box-shadow: 2px 3px 0 #f5c186;
+  background: transparent;
+  border: 2px solid #E99F4c;
+  color: #E99F4c;
+  margin-top: 5px;
+}
+.auth-container button:hover{
+  color: white ;
+  border:2px solid #E99F4c;
+  background-color: #E99F4c;
+}
+
+.auth-container h2{
+  color: #f88c12;
+  margin-bottom: 7px;
+}
+.auth-container p {
+  margin-top: 1rem;
+}
+.auth-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/*  login and register css  end */
+
+
+@media screen and (max-width: 668px) {
+  .home {
+    flex-direction: column;
+  }
+  .bottomDiv {
+    flex-direction: column;
+    margin: 15px;
+  }
+  .leftDiv {
+    width: 100%;
+    height: 40%;
+  }
+  .rightDiv {
+    width: 100%;
+    height: 60%;
+    position: relative;
+    top: 0;
+  }
+  /* post jobs css */
+  .postjob{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+  }
+  .postjob center {
+    font-size: 40px;
+  }
+  .postjob button {
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  .postjob .fourdivs {
+    flex-direction: column;
+    align-items: center;
+    margin-inline: 20px;
+  }
+  
+  .dbfeatures {
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 10px auto;
+  }
+  .dbfeatures img{
+    display: none;
+  }
+  .dbfeatures .dfleft {
+    width: 100%;
+  }
+  .divthree {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 ;
+  }
+  .divthreeleft, .divthreeright {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+}
