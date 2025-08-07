@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json()); // ✅ This is required for parsing JSON POST bodies
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']

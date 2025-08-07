@@ -48,7 +48,7 @@ const formatJob = (job, index) => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/adzuna?what=software+developer&where=India&results_per_page=10');
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/adzuna?what=software+developer&where=India&results_per_page=10`);
       const data = await response.json();
       const formatted = data.map(formatJob);
       setJobs(formatted);
@@ -59,7 +59,7 @@ const formatJob = (job, index) => {
 
   const fetchAppliedJobs = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/user-applied', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/user-applied`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -83,7 +83,7 @@ const formatJob = (job, index) => {
     }
     try {
       const response = await fetch(
-        `http://localhost:5000/api/adzuna?what=${encodeURIComponent(searchText)}&where=${encodeURIComponent(locationText)}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/adzuna?what=${encodeURIComponent(searchText)}&where=${encodeURIComponent(locationText)}`
       );
 
       const contentType = response.headers.get('content-type');
@@ -113,7 +113,7 @@ const formatJob = (job, index) => {
 
   const handleApply = async (formData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/apply', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/apply`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

@@ -12,7 +12,7 @@ const PostedJobs = () => {
     useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/employer/jobs', {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/employer/jobs`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -36,7 +36,7 @@ const PostedJobs = () => {
   const fetchApplicants = async (jobId) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/employer/applicants/${jobId}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/employer/applicants/${jobId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -83,7 +83,7 @@ const PostedJobs = () => {
                                   <p><b>{app.applicantName}</b> — {app.applicantEmail}</p>
                                   {app.resumePath && (
                                     <a
-                                      href={`http://localhost:5000/${app.resumePath}`}
+                                      href={`${import.meta.env.VITE_API_BASE_URL}/${app.resumePath}`}
                                       target="_blank"
                                       rel="noopener noreferrer"
                                     >

@@ -22,7 +22,7 @@ const RegisterPage = () => {
     console.log('Registering:', formData);
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/register', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -50,7 +50,7 @@ const RegisterPage = () => {
         <h2>Register</h2>
         <form onSubmit={handleSubmit} className="auth-form">
           <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} required />
-          <input type="email" name="email" placeholder='Enter email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" value={formData.email} onChange={handleChange} required />
+          <input type="email" name="email" placeholder='Enter email' title="Please enter a valid email address" value={formData.email} onChange={handleChange} required />
           <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
           
           <label htmlFor="role">Register As:</label>
