@@ -22,11 +22,11 @@ const HomePage = () => {
     // console.log("✅ selectedJob:", selectedJob);
   }, [selectedJob]);
 
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+    // const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-    console.log("API Base URL:", API_BASE_URL);
+    // console.log("API Base URL:", API_BASE_URL);
 
-    console.log("API Base URL:", process.env.REACT_APP_API_BASE_URL);
+    // console.log("API Base URL:", process.env.REACT_APP_API_BASE_URL);
 
 
 const formatJob = (job, index) => {
