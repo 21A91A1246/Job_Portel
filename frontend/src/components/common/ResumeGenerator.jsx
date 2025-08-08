@@ -53,7 +53,7 @@ const ResumeGenerator = () => {
     ].filter(Boolean);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/generate-resume`, {
+      const response = await axios.post(`${import.meta.env.REACT_APP_API_BASE_URL}/api/generate-resume`, {
         jobRole,
         jobDescription,
         requiredSkills,

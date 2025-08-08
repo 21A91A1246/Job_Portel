@@ -16,7 +16,7 @@ const AppliedJobs = () => {
       }
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/user-applied`, {
+        const res = await axios.get(`${import.meta.env.REACT_APP_API_BASE_URL}/api/user-applied`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

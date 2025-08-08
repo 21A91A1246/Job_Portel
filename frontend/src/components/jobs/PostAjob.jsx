@@ -85,7 +85,7 @@ function PostAjob() {
     };
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/jobs`, {
+      const response = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/jobs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

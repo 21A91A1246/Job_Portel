@@ -22,7 +22,7 @@ const BecomeEmployer = () => {
         return navigate('/login');
       }
 
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/update-role`, {
+      const res = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/users/update-role`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
