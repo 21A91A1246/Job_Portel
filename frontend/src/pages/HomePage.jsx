@@ -68,7 +68,7 @@ const HomePage = () => {
     try {
       setErrorMessage(null);
       if (!token) {
-        console.warn('No token found in localStorage');
+        console.warn('No user logged in');
         setAppliedJobIds([]);
         return;
       }
