@@ -24,8 +24,8 @@ const ApplyJobs = ({ selectedJob, handleApply, isLoggedIn }) => {
     description,
     _id,
   } = selectedJob;
-  console.log("link",redirectUrl);
-  console.log("selectedJob", selectedJob);
+  // console.log("link",redirectUrl);
+  // console.log("selectedJob", selectedJob);
 
   const isInternalJob = Boolean(_id);
 
