@@ -38,7 +38,7 @@ const ApplicantDashboard = () => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const response = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/jobs`);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/jobs`);
       const data = await response.json();
       const formattedJobs = data.map(formatJob);
       setJobs(formattedJobs);
@@ -50,7 +50,7 @@ const ApplicantDashboard = () => {
 
   const fetchAppliedJobs = useCallback(async () => {
     try {
-      const res = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/user-applied`, {
+      const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/user-applied`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -72,7 +72,7 @@ const ApplicantDashboard = () => {
 
   const handleApply = async (formData) => {
     try {
-      const response = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/apply`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/apply`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,

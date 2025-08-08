@@ -22,7 +22,12 @@ const HomePage = () => {
     // console.log("✅ selectedJob:", selectedJob);
   }, [selectedJob]);
 
-    
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+    console.log("API Base URL:", API_BASE_URL);
+
+    console.log("API Base URL:", process.env.REACT_APP_API_BASE_URL);
+
 
 const formatJob = (job, index) => {
   const extractedSkills = suggestSkillsForJob(job);
@@ -48,7 +53,7 @@ const formatJob = (job, index) => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const response = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/adzuna?what=software+developer&where=India&results_per_page=10`);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/adzuna?what=software+developer&where=India&results_per_page=10`);
       const data = await response.json();
       const formatted = data.map(formatJob);
       setJobs(formatted);
@@ -59,7 +64,7 @@ const formatJob = (job, index) => {
 
   const fetchAppliedJobs = async () => {
     try {
-      const res = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/user-applied`, {
+      const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/user-applied`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -83,7 +88,7 @@ const formatJob = (job, index) => {
     }
     try {
       const response = await fetch(
-        `${import.meta.env.REACT_APP_API_BASE_URL}/api/adzuna?what=${encodeURIComponent(searchText)}&where=${encodeURIComponent(locationText)}`
+        `${process.env.REACT_APP_API_BASE_URL}/api/adzuna?what=${encodeURIComponent(searchText)}&where=${encodeURIComponent(locationText)}`
       );
 
       const contentType = response.headers.get('content-type');
@@ -113,7 +118,7 @@ const formatJob = (job, index) => {
 
   const handleApply = async (formData) => {
     try {
-      const response = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/apply`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/apply`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

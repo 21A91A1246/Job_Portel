@@ -22,7 +22,7 @@ const RegisterPage = () => {
     console.log('Registering:', formData);
 
     try {
-      const response = await fetch(`${import.meta.env.REACT_APP_API_BASE_URL}/api/users/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
