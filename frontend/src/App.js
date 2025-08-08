@@ -14,7 +14,7 @@ import Sidebar from './components/dashboard/Sidebar';
 import PostedJobs from './components/dashboard/PostedJobs';
 import Footer from './components/common/Footer';
 import ResumeGenerator from './components/common/ResumeGenerator';
-import ApplicantDashboard from './components/dashboard/ApplicantDashboard.jsx/ApplicantDashboard';
+import ApplicantDashboard from './components/dashboard/ApplicantDashboard/ApplicantDashboard.jsx';
 
 function App() {
   return (
