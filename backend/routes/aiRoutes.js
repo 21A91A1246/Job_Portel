@@ -21,29 +21,48 @@ router.post('/generate-resume', async (req, res) => {
   }
 
   const prompt = `
-You are an expert resume writer. Create a professional, ATS-friendly resume using the following candidate and job information.
+              You are an expert professional resume writer.
+              Generate a modern, ATS-friendly resume in clean text format based on the following user details.
+              Use clear section headings in ALL CAPS and keep formatting consistent.
+              Do not use Markdown formatting, bullet emojis, or decorative symbols other than plain text bullets (•).
+              Align everything properly so the resume looks professional and ready for copy-paste into a document.
 
-**Formatting Guidelines:**
-- Use clear section headings in **bold**
-- Use bullet points for experience, skills where appropriate
-- Avoid unnecessary filler
-- Keep it concise, impactful, and job-specific
+              Formatting rules:
+              - Use plain text only (no Markdown, HTML, or special formatting).
+              - Use "•" (U+2022 bullet character) followed by one space for all bullet points.
+              - Do not use "*" or "-" for bullet points.
+              - Escape all newlines as \\n in the resumeContent string.
 
-**Job Details:**
-- Job Role: ${jobRole}
-- Job Description: ${jobDescription}
-- Required Skills: ${requiredSkills.join(', ')}
+              Sections to include in this order:
+              1. Full Name and Contact Info (single line with phone, email, location)
+              2. Professional Summary (3–4 concise sentences highlighting experience, skills, and achievements)
+              3. Skills (list of relevant technical and soft skills)
+              4. Education (degree, university, graduation year)
+              5. Work Experience (company, role, dates, responsibilities in bullet points)
+              6. Projects (project name, brief description, key technologies used)
+              7. Certifications (certification name, issuing organization, year)
+              8. Achievements (short bullet points of key recognitions or awards)
 
-**Candidate Info:**
-${JSON.stringify(userInfo)}
+              Here are the user details to base the resume on:
+              - Job Role: ${jobRole}
+              - Job Description: ${jobDescription}
+              - Required Skills: ${requiredSkills.join(', ')}
+              - Candidate Info: ${JSON.stringify(userInfo)}
 
-**Return JSON with:**
-{
-  "resumeContent": "formatted resume string (use \\n for line breaks)",
-  "suggestedProjects": [ { "title": "...", "description": "..." }, ... ],(array of 2)
-  "certifications": [ { "name": "...", "description": "..." }, ... ],(array of 2)
-}
-`;
+              Return ONLY a JSON object in the following format:
+              {
+                "resumeContent": "formatted resume string with \\n for newlines",
+                "suggestedProjects": [
+                  { "title": "Project Name", "description": "Brief description" },
+                  { "title": "Project Name", "description": "Brief description" }
+                ],
+                "certifications": [
+                  { "name": "Certification Name", "description": "Issuing Organization, Year" },
+                  { "name": "Certification Name", "description": "Issuing Organization, Year" }
+                ]
+              }
+              `;
+
 
 
   try {

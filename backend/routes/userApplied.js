@@ -3,6 +3,7 @@ const router = express.Router();
 const { auth } = require('../middleware/auth');
 const Applicant = require('../models/Applicant');
 const Job = require('../models/Job');
+const mongoose = require('mongoose'); 
 
 // GET /api/user-applied
 router.get('/', auth, async (req, res) => {
@@ -30,11 +31,39 @@ router.get('/', auth, async (req, res) => {
         jobId: job._id,
       };
     });
-    console.log('User applied jobs data:', result);
+    // console.log('User applied jobs data:', result);
     res.json(result);
   } catch (err) {
     console.error('Error fetching applied job details:', err);
     res.status(500).json({ message: 'Error fetching applied job details' });
+  }
+});
+
+// DELETE /api/user-applied/:jobId
+router.delete('/:jobId', auth, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const jobId = req.params.jobId;
+
+    // Validate ObjectId
+    if (!mongoose.Types.ObjectId.isValid(jobId)) {
+      return res.status(400).json({ message: 'Invalid jobId format' });
+    }
+
+    // Delete application belonging to logged-in user
+    const deleted = await Applicant.findOneAndDelete({
+      jobId: new mongoose.Types.ObjectId(jobId),
+      userId
+    });
+
+    if (!deleted) {
+      return res.status(404).json({ message: 'Application not found or unauthorized' });
+    }
+
+    return res.json({ message: 'Application deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting application:', err);
+    return res.status(500).json({ message: 'Server error while deleting application' });
   }
 });
 

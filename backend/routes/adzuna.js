@@ -39,8 +39,8 @@ router.get('/adzuna', async (req, res) => {
           jobRole: job.title,
           companyName: job.company.display_name,
           location: job.location.display_name,
-          salary: job.salary?.average || null,
-          description: job.description,
+          salary: job.salary_max || job.salary_min || null,
+          jobDescription: job.description,
           redirectUrl: job.redirect_url,
           createdAt: new Date()
         };
@@ -60,6 +60,7 @@ router.get('/adzuna', async (req, res) => {
 
     // Return only the upserted jobs (no extra jobs)
     res.json(savedJobs);
+    console.log(savedJobs);
 
   } catch (error) {
     console.error('Adzuna API error:', {

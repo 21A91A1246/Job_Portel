@@ -38,7 +38,7 @@ const ApplicantDashboard = () => {
 
   const fetchJobs = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/jobs`);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/adzuna?what=software+developer&where=India`);
       const data = await response.json();
       const formattedJobs = data.map(formatJob);
       setJobs(formattedJobs);

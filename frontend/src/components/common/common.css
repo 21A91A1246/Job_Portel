@@ -42,10 +42,9 @@
 
 
 /* search box css */
-/* common.css */
 
 .hero-section {
-  background-image: url('/public/imgs/hero-office.jpg');
+  background-image: url('/public/imgs/hero-office.jpg');  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -90,15 +89,29 @@
 
 .search-field {
   position: relative;
-  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* click through */
+  font-size: 1rem;
+  color: gray;
+  z-index: 2; /* stays above input background */
 }
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  height: 40px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  padding: 0 0.75rem 0 2.75rem !important; /* force left padding */
+  box-sizing: border-box;
 }
 
 .search-button {
@@ -109,6 +122,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  margin: 0 !important;
 }
 
 .search-bar-form button:hover {
@@ -138,14 +152,6 @@
   text-decoration: underline;
 }
 
-
-@media (min-width: 668px) {
-  .search-bar-form {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
 .search-field {
   position: relative;
   flex: 1;
@@ -161,6 +167,8 @@
 
 .search-input {
   width: 100%;
+  padding-left: 35px; /* make room for icon */
+  height: 40px;
   padding: 0rem 0.75rem 2.5rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
@@ -339,30 +347,28 @@
   padding-top: 10px;
 }
 
-@media screen and (max-width: 600px){
-  body{
-    width: 100%;
-  }
-  /* header css */
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+
+/* Mobile */
+@media (max-width: 768px) {
+  /* Navbar */
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    margin-top: 10px;
   }
-  
 
   .navbar-nav {
     display: none;
     flex-direction: column;
     position: absolute;
+    margin-right: 30px;
     top: 90%;
     right: 0;
-    background: linear-gradient(to right, #e6b64d, #bfe9ff); /* Gradient */
-    color: #333;
+    background: linear-gradient(to right, #e6b64d, #bfe9ff);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     width: 60%;
-    /* padding: 1rem; */
     z-index: 999;
     text-align: center;
     padding-block: 10px;
@@ -375,22 +381,28 @@
 
   .menu-icon {
     display: block;
-    
   }
-  /* search box css */
 
+  /* Search bar */
+  .search-bar-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  /* Footer */
   .footerleftright {
     flex-direction: column;
   }
+
   .footerleft {
     width: 100%;
   }
-  .footerright{
-    gap:5px
-  }
-  .ftr{
+
+  .ftr {
     display: none;
   }
-  
-  
 }

@@ -1,12 +1,29 @@
 // src/pages/applicant/RecentActivity.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ApplicantDashboard.css';
 
 const RecentActivity = ({ appliedJobs }) => {
   const [showAll, setShowAll] = useState(false);
+  const [applications, setApplications] = useState([]);
+
+  // Sync state when appliedJobs prop changes
+  useEffect(() => {
+    if (appliedJobs && Array.isArray(appliedJobs)) {
+      setApplications(appliedJobs);
+    }
+  }, [appliedJobs]);
+
+  // Delete handler (UI-only)
+  const handleDelete = (jobId) => {
+    if (!window.confirm('Are you sure you want to remove this from view?')) return;
+
+    setApplications((prev) =>
+      prev.filter((job) => job._id !== jobId && job.jobId !== jobId)
+    );
+  };
 
   // Map and sort by appliedAt or fallback to createdAt
-  const allApps = appliedJobs
+  const allApps = applications
     .map((job) => ({
       title: job.jobRole,
       company: job.companyName,
@@ -14,16 +31,13 @@ const RecentActivity = ({ appliedJobs }) => {
       date: new Date(job.appliedAt || job.createdAt).toLocaleDateString(),
       timestamp: new Date(job.appliedAt || job.createdAt),
       status: 'Applied',
-
-      // Add applicant fields here if coming from backend:
       applicantName: job.applicantName,
       mobileNumber: job.mobileNumber,
       resumeFilename: job.resume?.filename,
-      jobId: job._id || job.jobId, // to construct resume URL
+      jobId: job._id || job.jobId,
     }))
     .sort((a, b) => b.timestamp - a.timestamp);
 
-  // If not showing all, only take first 5
   const displayedApps = showAll ? allApps : allApps.slice(0, 5);
 
   return (
@@ -39,8 +53,6 @@ const RecentActivity = ({ appliedJobs }) => {
                 <h4>{job.title}</h4>
                 <p>{job.company}</p>
                 <p>{job.location} • Applied {job.date}</p>
-
-                {/* Applicant details */}
                 <p><strong>Name:</strong> {job.applicantName || 'N/A'}</p>
                 <p><strong>Phone:</strong> {job.mobileNumber || 'N/A'}</p>
                 <p>
@@ -58,19 +70,27 @@ const RecentActivity = ({ appliedJobs }) => {
                   )}
                 </p>
               </div>
-              <div
-                className={`badge badge-${job.status
-                  .toLowerCase()
-                  .replace(/\s+/g, '-')}`}
-              >
-                {job.status}
+
+              <div className="job-actions">
+                <span
+                  className={`badge badge-${job.status
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')}`}
+                >
+                  {job.status}
+                </span>
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(job.jobId)}
+                >
+                  Remove
+                </button>
               </div>
             </div>
           ))
         )}
       </div>
 
-      {/* Toggle Button */}
       {allApps.length > 5 && (
         <div style={{ textAlign: 'center', marginTop: '1rem' }}>
           <button

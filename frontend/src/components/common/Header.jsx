@@ -22,7 +22,7 @@ const Header = () => {
 
       {/* Toggle Menu Icon */}
       {!menuOpen ? (
-        <FaBars className="menu-icon" onClick={() => setMenuOpen(true)} />
+       <FaBars className="menu-icon" style={{marginRight:'30px'}} onClick={() => setMenuOpen(true)} />
       ) : (
         <FaTimes className="menu-icon" onClick={() => setMenuOpen(false)} />
       )}
