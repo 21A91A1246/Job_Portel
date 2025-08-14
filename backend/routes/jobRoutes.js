@@ -5,7 +5,7 @@ const { auth, employerOnly } = require('../middleware/auth');
 
 // ✅ POST — create job
 router.post('/', auth, employerOnly, async (req, res) => {
-    console.log('POST /api/jobs hit'); // 🔍 Debug line
+    // console.log('POST /api/jobs hit'); // 🔍 Debug line
 
   try {
     const {

@@ -10,7 +10,7 @@ const savedJobs = [
 const SavedJobs = () => {
   return (
     <div className="section">
-      <h2>Saved Jobs</h2>
+      <center><h2>Saved Jobs</h2></center>
       <div className="saved-jobs">
         {savedJobs.map((job, i) => (
           <div key={i} className="saved-job-card">

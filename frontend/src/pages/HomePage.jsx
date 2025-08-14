@@ -7,6 +7,7 @@ import JobsPage from './JobsPage';
 import CTASection from '../components/common/CTASection';
 import Footer from '../components/common/Footer';
 import ApplyJobs from '../components/jobs/ApplyJobs';
+import JobCategories from '../components/common/categories';
 
 const HomePage = () => {
   const [jobs, setJobs] = useState([]);
@@ -201,6 +202,24 @@ const HomePage = () => {
           </div>
         </div>
       </main>
+      <div className="resume-promo">
+        <div className="promo-text">
+          <h2>🎉 Try Our New <span>Resume Generator</span>!</h2>
+          <p>Create a professional resume in minutes. Easy. Fast. Free.</p>
+          <a href="/ResumeGenerator" className="promo-btn">Try It Now</a>
+        </div>
+    </div>
+      <div style={{height:'10rem',backgroundColor:'#007bff', display:'flex',alignItems:'center',justifyContent:'space-around',paddingInline:'50px',marginBlock:'20px'}} className="blueSeperator">
+
+        <p style={{color:'white',fontSize:'35px',fontWeight:'bolder'}}>50,000+ <br /> <span style={{fontSize:'15px',opacity:'80%',color:'smokewhite'}}>Active Jobs</span></p>
+        <p style={{color:'white',fontSize:'35px',fontWeight:'bolder'}}>25,000+ <br />  <span style={{fontSize:'15px',opacity:'80%',color:'smokewhite'}}>Companies</span></p>
+        <p style={{color:'white',fontSize:'35px',fontWeight:'bolder'}}>1M+ <br /> <span style={{fontSize:'15px',opacity:'80%',color:'smokewhite'}}>Job Seekers</span></p>
+        <p style={{color:'white',fontSize:'35px',fontWeight:'bolder'}}>95% <br /> <span style={{fontSize:'15px',opacity:'80%',color:'smokewhite'}}>Success Rate</span></p>
+      </div>
+      {/* job categories */}
+      <div style={{paddingInline:'40px'}}>
+        <JobCategories/>
+      </div>
 
       <div className="usersTypes">
         <CTASection />

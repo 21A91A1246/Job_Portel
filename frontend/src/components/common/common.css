@@ -206,6 +206,64 @@
   text-decoration: underline;
 }
 
+/* job Categories css */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.job-card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+}
+
+.icon-container {
+  width: 60px;
+  height: 60px;
+  background-color: #f9fafb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.icon {
+  font-size: 28px;
+}
+
+.icon.blue { color: #3366ff; }
+.icon.purple { color: #a855f7; }
+.icon.green { color: #22c55e; }
+.icon.orange { color: #f97316; }
+.icon.red { color: #ef4444; }
+.icon.pink { color: #ec4899; }
+.icon.indigo { color: #6366f1; }
+.icon.yellow { color: #f59e0b; }
+
+.job-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.job-card p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+
 /* ctaSection css */
 .cta-section {
   padding: 40px 0;
@@ -404,5 +462,35 @@
 
   .ftr {
     display: none;
+  }
+}
+
+
+/* Responsive Grid */
+@media (max-width: 1200px) {
+  .job-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .job-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .job-grid {
+    grid-template-columns: 1fr;
+    margin-right: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .job-card {
+    padding: 10px;
+    width: 300px;
+        margin-right: 0px !important;
+    padding-right: 0px !important;
+
   }
 }

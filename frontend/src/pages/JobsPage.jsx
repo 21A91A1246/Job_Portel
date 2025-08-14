@@ -1,21 +1,28 @@
-// ✅ JobsPage.jsx
 import React from 'react';
 import './pages.css';
 
-const JobsPage = ({ jobs = [], onJobClick = () => {}, appliedJobIds = [] }) => {
+const JobsPage = ({
+  jobs = [],
+  onJobClick = () => {},
+  appliedJobIds = [],
+  onShowMore,
+  loading,
+  hasMore,
+}) => {
   return (
     <div className="jobs-container">
-      <h2 style={{marginBottom:'10px'}}>Available Jobs</h2>
+      <h2 style={{ marginBottom: '10px' }}>Available Jobs</h2>
 
-      {jobs.length === 0 && <p>No jobs found.</p>}
+      {jobs.length === 0 && !loading && <p>No jobs found.</p>}
 
       {jobs.map((job, index) => {
-        const jobKey = job._id || job.externalId || index;
+        // Use composite key to ensure uniqueness
+        const jobKey = `${job._id || job.externalId || 'job'}-${index}`;
 
         const isApplied =
           Array.isArray(appliedJobIds) &&
-          (appliedJobIds.includes(String(job._id)) || appliedJobIds.includes(String(job.externalId)));
-
+          (appliedJobIds.includes(String(job._id)) ||
+            appliedJobIds.includes(String(job.externalId)));
 
         return (
           <div
@@ -34,6 +41,18 @@ const JobsPage = ({ jobs = [], onJobClick = () => {}, appliedJobIds = [] }) => {
           </div>
         );
       })}
+
+      {/* {hasMore && (
+        <div style={{ textAlign: 'center', marginTop: '15px' }}>
+          <button
+            className="show-more-btn"
+            onClick={onShowMore}
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Show More Jobs'}
+          </button>
+        </div>
+      )} */}
     </div>
   );
 };

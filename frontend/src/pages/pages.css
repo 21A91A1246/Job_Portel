@@ -226,6 +226,50 @@ margin-bottom: 20px;
   opacity: 60%;
 }
 
+/* resumeGenerator css */
+.resume-promo {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 16px;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 700px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.promo-text h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.promo-text h2 span {
+  color: #ffe16b;
+}
+
+.promo-text p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #f3f4f6;
+}
+
+.promo-btn {
+  display: inline-block;
+  background-color: white;
+  color: #4f46e5;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.promo-btn:hover {
+  background-color: #e0e7ff;
+  transform: scale(1.05);
+}
+
+
 /* footer start */
 .footer {
   width: 100%;

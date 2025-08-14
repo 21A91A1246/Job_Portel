@@ -23,7 +23,7 @@ const recommendations = [
 const JobRecommendations = () => {
   return (
     <div className="section">
-      <h2>Recommended for You</h2>
+      <center><h2>Recommended for You</h2></center>
       <div className="recommendations">
         {recommendations.map((job, i) => (
           <div key={i} className="recommendation-card">

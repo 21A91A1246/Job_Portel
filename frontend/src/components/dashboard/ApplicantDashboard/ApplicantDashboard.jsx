@@ -14,7 +14,12 @@ const ApplicantDashboard = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
   const [showApplied, setShowApplied] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
-  const [visibleCount, setVisibleCount] = useState(10);
+
+  // Pagination states
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
   const email = localStorage.getItem('userEmail');
 
   const formatJob = (job, index) => ({
@@ -33,18 +38,24 @@ const ApplicantDashboard = () => {
     jobDescription: job.jobDescription || job.description || 'No description provided',
     redirectUrl: job.redirect_url || job.redirectUrl || '',
     createdAt: new Date(),
-    appliedAt: job.appliedAt ? new Date(job.appliedAt) : null, // Optional
+    appliedAt: job.appliedAt ? new Date(job.appliedAt) : null,
   });
 
-  const fetchJobs = useCallback(async () => {
+  const fetchJobs = useCallback(async (pageNumber = 1) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/adzuna?what=software+developer&where=India`);
+      setLoading(true);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/adzuna?what=software+developer&where=India&results_per_page=10&page=${pageNumber}`);
       const data = await response.json();
       const formattedJobs = data.map(formatJob);
-      setJobs(formattedJobs);
-      setSelectedJob(formattedJobs[0]);
+
+      setJobs(prev => (pageNumber === 1 ? formattedJobs : [...prev, ...formattedJobs]));
+      setSelectedJob(formattedJobs[0] || null);
+
+      setHasMore(formattedJobs.length === 10);
     } catch (err) {
       console.error('Error fetching jobs:', err);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -57,18 +68,28 @@ const ApplicantDashboard = () => {
       });
       const data = await res.json();
 
-      // ✅ make sure data is an array
       if (Array.isArray(data)) {
         setAppliedJobs(data);
       } else {
-        setAppliedJobs([]); // fallback if the API gives something unexpected
+        setAppliedJobs([]);
       }
     } catch (err) {
       console.error('Error fetching applied jobs:', err);
-      setAppliedJobs([]); // fallback on error too
+      setAppliedJobs([]);
     }
   }, []);
 
+  useEffect(() => {
+    setPage(1);
+    fetchJobs(1);
+    fetchAppliedJobs();
+  }, [fetchJobs, fetchAppliedJobs]);
+
+  const handleShowMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchJobs(nextPage);
+  };
 
   const handleApply = async (formData) => {
     try {
@@ -82,7 +103,7 @@ const ApplicantDashboard = () => {
 
       if (response.ok) {
         alert('Application submitted successfully!');
-        fetchAppliedJobs(); // Refresh applied jobs list
+        fetchAppliedJobs();
       } else {
         alert('Something went wrong.');
       }
@@ -92,14 +113,8 @@ const ApplicantDashboard = () => {
     }
   };
 
-  useEffect(() => {
-    fetchJobs();
-    fetchAppliedJobs();
-  }, [fetchJobs,fetchAppliedJobs]);
-
-  const appliedJobIds = appliedJobs.map(app => String(app.jobId)); // ← Correct
+  const appliedJobIds = appliedJobs.map(app => String(app.jobId));
   const filteredJobs = showApplied ? jobs.filter(job => appliedJobIds.includes(job._id)) : jobs;
-  const visibleJobs = filteredJobs.slice(0, visibleCount);
 
   return (
     <div className="dashboard">
@@ -115,13 +130,22 @@ const ApplicantDashboard = () => {
             {showApplied ? 'Show All Jobs' : 'Show Applied Jobs'}
           </button>
 
-          <JobsPage jobs={visibleJobs} onJobClick={setSelectedJob} appliedJobIds={appliedJobIds} />
+          <JobsPage
+            jobs={filteredJobs}
+            onJobClick={setSelectedJob}
+            appliedJobIds={appliedJobIds}
+            onShowMore={handleShowMore}
+            loading={loading}
+            hasMore={hasMore}
+          />
 
-          {visibleCount < filteredJobs.length && (
-            <button className="show-more-btn" onClick={() => setVisibleCount(prev => prev + 10)}>
-              Show More
+          {hasMore && !loading && (
+            <button className="show-more-btn" onClick={handleShowMore}>
+              Show More Jobs
             </button>
           )}
+
+          {loading && <p>Loading...</p>}
         </div>
 
         <div className="rightDiv">

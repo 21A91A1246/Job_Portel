@@ -18,12 +18,12 @@ async function run() {
       $or: [
         { jobDescription: { $exists: false } },
         { jobDescription: '' },
-        { salary: { $exists: false } },
-        { salary: null }
+        
+  
       ]
     });
 
-    console.log(`Found ${jobs.length} jobs missing descriptions or salary.`);
+    console.log(`Found ${jobs.length} jobs missing descriptions .`);
 
     for (const job of jobs) {
       try {
@@ -45,9 +45,7 @@ async function run() {
           if (!job.jobDescription) {
             job.jobDescription = result.description;
           }
-          if (job.salary == null && result.salary?.average) {
-            job.salary = result.salary.average;
-          }
+          
           await job.save();
           console.log(`✅ Updated job ${job.externalId}`);
         } else {

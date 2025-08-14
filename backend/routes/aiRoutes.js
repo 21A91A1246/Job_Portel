@@ -34,10 +34,10 @@ router.post('/generate-resume', async (req, res) => {
               - Escape all newlines as \\n in the resumeContent string.
 
               Sections to include in this order:
-              1. Full Name and Contact Info (single line with phone, email, location)
+              1. Full Name and Contact Info (single line with phone, email, location in center of page)
               2. Professional Summary (3–4 concise sentences highlighting experience, skills, and achievements)
-              3. Skills (list of relevant technical and soft skills)
-              4. Education (degree, university, graduation year)
+              3. Education (degree, university, graduation year)
+              4. Skills (list of relevant technical and soft skills)
               5. Work Experience (company, role, dates, responsibilities in bullet points)
               6. Projects (project name, brief description, key technologies used)
               7. Certifications (certification name, issuing organization, year)
@@ -61,9 +61,7 @@ router.post('/generate-resume', async (req, res) => {
                   { "name": "Certification Name", "description": "Issuing Organization, Year" }
                 ]
               }
-              `;
-
-
+      `;
 
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });

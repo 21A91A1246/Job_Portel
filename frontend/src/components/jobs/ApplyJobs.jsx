@@ -163,7 +163,7 @@ const ApplyJobs = ({ selectedJob, handleApply, isLoggedIn }) => {
       <div>
         <h2>Other Knowledge, Skills and Abilities:</h2>
         <p><strong>Type:</strong> {employmentType || 'N/A'}</p>
-        <p><strong>Job Description:</strong> {jobDescription || description || 'Not provided'}</p>
+        <p><strong>Job Description:</strong> {jobDescription?.trim() ? jobDescription : (description?.trim() || 'Not provided')}</p>
         <ul>
           <li>Proficient in Microsoft Office Suite and Google Workspace.</li>
           <li>Excellent communication and inter-personal skills</li>

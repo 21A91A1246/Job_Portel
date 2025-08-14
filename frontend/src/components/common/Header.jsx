@@ -17,6 +17,11 @@ const Header = () => {
     navigate('/login');
   };
 
+  const handleFindJobs = () => {
+    setMenuOpen(false);
+    navigate(token ? '/ApplicantDashboard' : '/login');
+  };
+  
   return (
     <header className="navbar" style={{borderBottom:'1px solid gray'}}>
 
@@ -32,7 +37,7 @@ const Header = () => {
           
           <div style={{display:'flex',gap:'10px'}}>
             <Link to="/" onClick={() => setMenuOpen(false)} style={{textDecoration:'none',color:'#4497f0',fontWeight:'700',fontSize:'bold'}}>Jobs Portel</Link>
-            <Link to="#" onClick={() => setMenuOpen(false)}>Find Jobs</Link>
+            <span onClick={handleFindJobs} style={{ cursor: 'pointer' }}>Find Jobs</span>            
             <Link to="#" onClick={() => setMenuOpen(false)}>Companies</Link>
             <Link to="#" onClick={() => setMenuOpen(false)}>Career Advice</Link>
           </div>

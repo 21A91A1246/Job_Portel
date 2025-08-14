@@ -33,6 +33,7 @@ const ResumeGenerator = () => {
   const [phone, setPhone] = useState('');
   const [college, setCollege] = useState('');
   const [extraSkills, setExtraSkills] = useState('');
+  const [achivements,setAchivements] = useState('');
   const [workExpe, setWorkExpe] = useState(''); // Optional field for work experience
 
   // Output
@@ -58,7 +59,7 @@ const ResumeGenerator = () => {
         jobDescription,
         requiredSkills,
         userInfo: {
-          name, email, phone, college, workExpe,
+          name, email, phone, college, workExpe,extraSkills,achivements
         }
       });
 
@@ -88,7 +89,8 @@ const ResumeGenerator = () => {
         <input type="email" name="applicantEmail" placeholder="Your Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="tel" name="applicantPhone" placeholder="Your Phone" required value={phone} onChange={(e) => setPhone(e.target.value)} />
         <input type="text" name="applicantCollege" placeholder="Your College" required value={college} onChange={(e) => setCollege(e.target.value)} />
-        <input type="text" name="applicantSkills" placeholder="Add any other Skills, Projects, Certifications not mentioned in JD (comma-separated)" value={extraSkills} onChange={(e) => setExtraSkills(e.target.value)} />
+        <input type="text" name="applicantSkills" placeholder="Add any other Skills,Projects, Certifications not mentioned in JD (comma-separated)" value={extraSkills} onChange={(e) => setExtraSkills(e.target.value)} />
+        <input type="text" name="Achivements" placeholder='Add Achivements if any' value={achivements} onChange={(e) => setAchivements(e.target.value)}/>
         <input type="text" name="workExperience" placeholder='work Experience or internships (if any)' value={workExpe} onChange={(e) => setWorkExpe(e.target.value)} />
       </div>  <hr />
 
